@@ -186,11 +186,6 @@
 
   // FRONTMATTER
 
-  set page(
-    numbering: "i",
-    footer: none
-  )
-
   // cover page
   let render_document = true
   let cover_page = {
@@ -221,9 +216,18 @@
     }
   }
 
+  counter(page).update(0)
+  set page(
+    numbering: none,
+  )
+
   cover_page
 
   if render_document {
+    set page(
+      numbering: "i",
+      footer: none
+    )
     // title page
     counter(page).update(1)
     page({
