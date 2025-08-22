@@ -10,7 +10,9 @@ This template allows future teams to generate the document and get the format ex
 
 ### Importing and setting up the template
 
-Either on your computer or using the Typst web-app, place the template, which is the folder that this document is in, in your project folder. In your project folder, create a Typst file called `main.typ`, and place the following contents in it:
+Either on your computer or using the Typst web-app, place the template, which is the folder that this document is in, in your project folder. You can use `git clone` or [download a ZIP file of this repository](https://github.com/trespaul/ssj-template/archive/refs/heads/main.zip) to extract.
+
+In your project folder, create a Typst file called `main.typ`, and place the following contents in it:
 
 ```typ
 #import "template/main.typ": meta
@@ -73,6 +75,26 @@ Either on your computer or using the Typst web-app, place the template, which is
 
 Customise the content as necessary (see the following sections for information about how to do so).
 
+In the end, the project folder will look something like this:
+
+```
+- template/             this template folder
+- main.typ              main file (see example)
+- cover_pattern.svg     cover pattern file
+- articles/             contents of the journal
+  ├── article1/         an article folder
+  │   ├── abstract.md   the article's abstract
+  │   ├── article.md    the article's body
+  │   └── bib.bib       the bibliography file
+  ├── article2/         another article
+  │   ├── abstract.md   etc.
+  │   ├── article.md
+  │   └── bib.bib
+  ├── article3/
+  │   └── ...
+  └── foreword.md       the journal foreword
+```
+
 ### Compiling the document
 
 If you're running Typst on your computer, run the following command to produce a PDF ready to upload (i.e., it includes the A4 cover):
@@ -125,4 +147,4 @@ The font used is Brill, by Brill Publishing, which is free for non-commercial us
 
 ### Cover pattern
 
-To create a cover pattern, you need an SVG file (although this would work with other formats too) that is big enough to cover the full wrap-around cover. For the default bleed and spine width settings (which are added to the final size, which is A3), this is 442 × 317 mm. You can use the free SVG editor [Inkscape](https://inkscape.org/) to create this document. An example SVG of the right size is included as a default cover, in the `assets` folder.
+To create a cover pattern, you need an SVG file (although other formats would work too) that is big enough to cover the full wrap-around cover. For the default bleed and spine width settings (which are added to the final size, which is A3), this is 442 × 317 mm. You can use the free SVG editor [Inkscape](https://inkscape.org/) to create this document. An example SVG of the right size is included as a default cover, in the `assets` folder.
