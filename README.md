@@ -22,6 +22,7 @@ Either on your computer or using the Typst web-app, place the template, which is
 
   document_title: "SSJ Vol. 5, 2025",
   // logo: "/assets/logo.svg", // OPTIONAL: if not specified, the default logo will be used
+  cover_background: "/cover_pattern.svg", // see below
 
   author: "Stellenbosch Socratic Society",
   institution: "Stellenbosch University",

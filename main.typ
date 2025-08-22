@@ -10,6 +10,7 @@
   date: datetime.today(),
   document_title: "SSJ Vol. X, 202X",
   logo: "assets/logo.svg",
+  cover_background: "assets/cover_pattern.svg",
 
   author: "Stellenbosch Socratic Society",
   institution: "Stellenbosch University",
@@ -198,6 +199,7 @@
       editorial_team: editorial_team,
       date: date,
       volume: volume,
+      background: cover_background,
      )
     pagebreak(to: "odd", weak: true)
   }
@@ -213,6 +215,7 @@
         editorial_team: editorial_team,
         date: date,
         volume: volume,
+        background: cover_background,
        )
       render_document = false
     }
