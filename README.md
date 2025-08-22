@@ -8,6 +8,8 @@ This template allows future teams to generate the document and get the format ex
 
 ## Usage
 
+### Importing and setting up the template
+
 Either on your computer or using the Typst web-app, place the template, which is the folder that this document is in, in your project folder. In your project folder, create a Typst file called `main.typ`, and place the following contents in it:
 
 ```typ
@@ -70,7 +72,9 @@ Either on your computer or using the Typst web-app, place the template, which is
 
 Customise the content as necessary (see the following sections for information about how to do so).
 
-If you're running on your computer, run the following command to produce a PDF ready to upload (i.e., it includes the A4 cover):
+### Compiling the document
+
+If you're running Typst on your computer, run the following command to produce a PDF ready to upload (i.e., it includes the A4 cover):
 
 ```bash
 typst compile main.typ "SSJ vol. X.pdf"
@@ -98,16 +102,26 @@ You will then also want to generate the wrap-around cover to send to the printer
 typst compile main.typ --input cover=full "SSJ vol. X - cover.pdf"
 ```
 
-Tell the printers this cover has a 10mm bleed (this is extra space that they can cut off so that the picture fills the entire page).
+Tell the printers this cover has a 10 mm bleed (this is extra space that they can cut off so that the picture fills the entire page).
 
 ### Documents in Typst or Markdown format
 
-### Colophon format
+In the `main.typ` file, where values are in square brackets (such as the colophon setting), and in the article documents, content can be written with Typst markup. See the [Typst Tutorial](https://typst.app/docs/tutorial/) for more information.
 
-### Bibliography file
+The articles can be in either Typst or Markdown format. For more about Markdown, see the [CommonMark specification](https://spec.commonmark.org/current/).
+
+The files necessary for each article are referenced in the `articles` part of the setup in your `main.typ` file. I suggest putting them in a folder called `articles` and giving each article its own subfolder.
+
+### Bibliography files
+
+The bibliography files can be either BibTex/BibLaTex files, which can be exported from a reference manager such as Zotero, or written by hand in Typst's own [Hayagriva format](https://github.com/typst/hayagriva/blob/main/docs/file-format.md).
+
+The entire contents of the bibliography files will be rendered in each article's Reference section. This is because I have decided it would be too much effort to rewrite each citation in Typst's format, and I have thus not tried either. Typst actually does not currently support multiple different bibliographies, so I'm using a third-party package which adds this functionality. Ideally, each citation would link to its reference in the bibliography.
 
 ### Font
 
 The font used is Brill, by Brill Publishing, which is free for non-commercial use. Before rendering the document, install the font files [available on Brill's website](https://brill.com/fileasset/The_Brill_Typeface_Package_v_4_0.zip).
 
-### Cover
+### Cover pattern
+
+To create a cover pattern, you need an SVG file (although this would work with other formats too) that is big enough to cover the full wrap-around cover. For the default bleed and spine width settings (which are added to the final size, which is A3), this is 442 × 317 mm. You can use the free SVG editor [Inkscape](https://inkscape.org/) to create this document. An example SVG of the right size is included as a default cover, in the `assets` folder.

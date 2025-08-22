@@ -10,7 +10,7 @@
   full: false,
   spine: 2mm,
   bleed: 10mm,
-  background: "/cover_pattern.svg",
+  background: "assets/cover_pattern.svg",
 ) = {
   // SETUP
 
