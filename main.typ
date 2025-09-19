@@ -169,7 +169,7 @@
 
   // define prefix for each bibliography
   for article in articles {
-    show: alexandria(prefix: article.short, read: path => read(path))
+    show: alexandria(prefix: article.short + "-", read: path => read(path))
   }
   // set bibliography heading styles
   // (have to override/wrap function, show rules don't work)
@@ -320,7 +320,11 @@
         author_styled(foreword.author)
         v(15mm)
         if foreword.file.ends-with(".md") {
-          cmarker.render(h1-level: 2, read(foreword.file))
+          cmarker.render(
+            h1-level: 2,
+            label-prefix: "foreword-",
+            read(foreword.file)
+          )
         } else {
           set heading(offset: 1)
           include(foreword.file)
@@ -344,6 +348,7 @@
       page(
         footer: article_footer(journal: journal, volume: volume, date: date, article),
         {
+          counter(footnote).update(0)
           // article title page
           counter(heading).step()
           heading(level: 1, article.title)
@@ -352,7 +357,10 @@
 
           heading(level: 2, [Abstract])
           if article.abstract.ends-with(".md") {
-            cmarker.render(read(article.abstract))
+            cmarker.render(
+              label-prefix: article.short + "-",
+              read(article.abstract)
+            )
           } else {
             set heading(offset: 1)
             include(article.abstract)
@@ -408,7 +416,11 @@
             { 
               set heading(numbering: strip_numbering)
               if article.file.ends-with(".md") {
-                cmarker.render(h1-level: 2, read(article.file))
+                cmarker.render(
+                  label-prefix: article.short + "-",
+                  h1-level: 2,
+                  read(article.file)
+                )
               } else {
                 set heading(offset: 1)
                 include(article.file)
@@ -418,7 +430,7 @@
 
           // references
           pagebreak()
-          bibliographyx(article.bibliography, prefix: article.short)
+          bibliographyx(article.bibliography, prefix: article.short + "-")
         }
       )
     }
