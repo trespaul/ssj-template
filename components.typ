@@ -1,7 +1,7 @@
-#let author_styled(name) = [
-  #v(3mm)
-  #text(style: "italic", size: 23pt, name)
-]
+#let author_styled(name) = {
+  v(3mm)
+  text(style: "italic", size: 23pt, name)
+}
 
 // for removing chapter (h1) number from section numbers
 #let strip_numbering(first, ..tail) = {
@@ -10,11 +10,11 @@
 
 // plain footer (for frontmatter)
 #let plain_footer = context {
-  if calc.even(counter(page).get().first()) [
-    #counter(page).display()
-  ] else [
-    #align(right, counter(page).display())
-  ]
+  if calc.even(counter(page).get().first()) {
+    counter(page).display()
+  } else {
+    align(right, counter(page).display())
+  }
 }
 
 // journal metadata on first page of section, article metadata on rest

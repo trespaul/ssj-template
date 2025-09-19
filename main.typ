@@ -102,7 +102,6 @@
     set par(leading: 0.5em)
     set block(width: 75%, above: 20mm)
     set heading(numbering: none)
-    // pagebreak(to: "odd", weak: true)
     v(20mm)
     it
   }
@@ -362,7 +361,6 @@
               read(article.abstract)
             )
           } else {
-            set heading(offset: 1)
             include(article.abstract)
           }
           v(15mm)
