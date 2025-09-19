@@ -66,7 +66,7 @@ In your project folder, create a Typst file called `main.typ`, and place the fol
       title: "ARTICLE TITLE",
       short_title: "SHORT TITLE", // OPTIONAL: leave out to use first part of title before colon
       author: "AUTHOR NAME",
-      about: "AUTHOR BIO",
+      about: "/articles/FOLDER/bio.md",
     ),
     // ...
   )
@@ -85,11 +85,13 @@ In the end, the project folder will look something like this:
   ├── article1/         an article folder
   │   ├── abstract.md   the article's abstract
   │   ├── article.md    the article's body
-  │   └── bib.bib       the bibliography file
+  │   ├── bib.bib       the bibliography file
+  │   └── bio.md        the author bio file
   ├── article2/         another article
   │   ├── abstract.md   etc.
   │   ├── article.md
-  │   └── bib.bib
+  │   ├── bib.bib
+  │   └── bio.md
   ├── article3/
   │   └── ...
   └── foreword.md       the journal foreword

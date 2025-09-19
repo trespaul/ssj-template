@@ -360,7 +360,14 @@
           v(15mm)
 
           heading(level: 2, [About the author])
-          text(article.about)
+          if article.about.ends-with(".md") {
+            cmarker.render(
+              label-prefix: article.short + "-",
+              read(article.about)
+            )
+          } else {
+            include(article.about)
+          }
 
           // article body
           pagebreak(to: "even")
