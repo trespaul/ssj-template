@@ -369,6 +369,37 @@
             include(article.about)
           }
 
+          v(1fr)
+
+          // DOI
+          if article.keys().contains("doi") {
+            link(
+              "https://doi.org/" + article.doi,
+              [DOI: #article.doi]
+            )
+            // linebreak()
+            h(3mm)
+          }
+
+          // Copyright
+          link(
+            "https://creativecommons.org/licenses/by-nc-sa/4.0",
+            [© CC BY-NC-SA 4.0]
+          )
+          h(1mm)
+          article.author
+
+          // Author ORCID
+          if article.keys().contains("orcid") {
+            h(3mm)
+            box(height: 0.8em, baseline: 1pt, image("assets/orcid.svg"))
+            h(1mm)
+            link(
+              "https://orcid.org/" + article.orcid,
+              article.orcid
+            )
+          }
+
           // article body
           pagebreak(to: "even")
           columns(
