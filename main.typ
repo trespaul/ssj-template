@@ -352,8 +352,8 @@
           counter(heading).step()
           heading(level: 1, article.title)
           author_styled(article.author)
-          v(15mm)
 
+          v(15mm)
           heading(level: 2, [Abstract])
           if article.abstract.ends-with(".md") {
             cmarker.render(
@@ -363,16 +363,18 @@
           } else {
             include(article.abstract)
           }
-          v(15mm)
 
-          heading(level: 2, [About the author])
-          if article.about.ends-with(".md") {
-            cmarker.render(
-              label-prefix: article.short + "-",
-              read(article.about)
-            )
-          } else {
-            include(article.about)
+          if article.keys().contains("about") {
+            v(15mm)
+            heading(level: 2, [About the author])
+            if article.about.ends-with(".md") {
+              cmarker.render(
+                label-prefix: article.short + "-",
+                read(article.about)
+              )
+            } else {
+              include(article.about)
+            }
           }
 
           v(1fr)
@@ -427,8 +429,10 @@
           )
 
           // references
-          pagebreak()
-          bibliographyx(article.bibliography, prefix: article.short + "-")
+          if article.keys().contains("bibliography") {
+            pagebreak()
+            bibliographyx(article.bibliography, prefix: article.short + "-")
+          }
         }
       )
     }
