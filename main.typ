@@ -108,7 +108,7 @@
 
   // h2 is article sections
   show heading.where(level: 2): it => {
-    set text(size: 14pt, weight: "regular")
+    set text(size: 14pt, weight: "regular", hyphenate: false)
     let num = counter(heading).display()
     block(
       above: 1.5em,
