@@ -34,7 +34,7 @@
 
   // footer of rest of article has article metadata
   let article_body_footer(article) = context {
-    if calc.even(counter(page).get().first()) [
+    if calc.even(here().page()) [
       // if verso, numbers outside and title inside
       #counter(page).display()
       #h(1fr)
