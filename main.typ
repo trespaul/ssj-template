@@ -350,7 +350,14 @@
           counter(footnote).update(0)
           // article title page
           counter(heading).step()
-          heading(level: 1, article.title)
+          [ // label only works in content block
+            #heading(
+              level: 1,
+              if article.keys().contains("title_pretty") { article.title_pretty }
+              else { article.title }
+            )
+            #label(article.short)
+          ]
           author_styled(article.author)
 
           v(15mm)
