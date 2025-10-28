@@ -25,6 +25,11 @@
 
   // COMPONENTS
 
+  show title: set text(
+    size: 63pt,
+    style: "italic",
+  )
+
   let margin = if full {bleed * 2 + 20mm} else {30mm}
 
   let subtitle = [
@@ -59,6 +64,10 @@
       paper: "a4",
     )}
   )
+
+  // LAYOUT
+
+  pdf.artifact({ // cover is decorative
 
   // spine
   if full {
@@ -190,6 +199,7 @@
               {
                 image(
                   width: 25mm,
+                  alt: "The SSJ logo.",
                   logo
                 )
               }
@@ -199,4 +209,5 @@
       }
     }
   )
+  })
 }

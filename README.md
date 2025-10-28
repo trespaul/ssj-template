@@ -102,10 +102,12 @@ In the end, the project folder will look something like this:
 If you're running Typst on your computer, run the following command to produce a PDF ready to upload (i.e., it includes the A4 cover):
 
 ```bash
-typst compile main.typ "SSJ vol. X.pdf"
+typst compile --pdf-standard ua-1 main.typ "SSJ vol. X.pdf"
 ```
 
 If you're using the web app, the document will be automatically rendered, and you can download it using the buttons above the preview.
+
+The `--pdf-standard ua-1` option indicates to Typst that the document should conform to the UA-1 PDF accessibility standard. For example, it will warn when images do not have alt captions.
 
 To produce PDFs of the individual articles, tell the command which pages they are on (these are the PDF pages, not the page numbers printed on the page, e.g., p. iii is PDF page 3, and p. 1 is PDF page 9, depending on how many pages there are before the first article).
 

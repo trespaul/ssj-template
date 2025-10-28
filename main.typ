@@ -96,6 +96,11 @@
     it
   }
 
+  show title: set text(
+    size: 25pt,
+    weight: "regular",
+  )
+
   // h1 is article title
   show heading.where(level: 1): it => {
     set text(size: 23pt)
@@ -234,12 +239,9 @@
         center + top,
         {
           v(30mm)
-          image(logo, width: 15%)
+          image(logo, alt: "The SSJ logo.", width: 15%)
           v(5mm)
-          text(
-            size: 25pt,
-            smallcaps(journal)
-          )
+          title(smallcaps(journal))
           v(5mm)
           text(
             size: 18pt,
@@ -407,7 +409,11 @@
           // Author ORCID
           if article.keys().contains("orcid") {
             h(3mm)
-            box(height: 0.8em, baseline: 1pt, image("assets/orcid.svg"))
+            box(
+              height: 0.8em,
+              baseline: 1pt,
+              image("assets/orcid.svg", alt: "The ORCID logo.")
+            )
             h(1mm)
             link(
               "https://orcid.org/" + article.orcid,
@@ -450,7 +456,7 @@
     pagebreak(to: "even")
     align(
       center + bottom,
-      image(logo, width: 10%)
+      image(logo, alt: "The SSJ logo.", width: 10%)
     )
 
   }
