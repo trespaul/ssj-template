@@ -75,6 +75,9 @@
 
   set par(
     justify: true,
+    justification-limits: (
+      tracking: (min: -0.01em, max: 0.01em),
+    ),
     leading: 0.8em,
     linebreaks: "optimized",
   )
@@ -114,6 +117,7 @@
   // h2 is article sections
   show heading.where(level: 2): it => {
     set text(size: 14pt, weight: "regular", hyphenate: false)
+    set par(leading: 0.6em)
     let num = counter(heading).display()
     block(
       above: 1.5em,
