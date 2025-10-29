@@ -9,7 +9,7 @@
   articles: (),
   full: false,
   spine: 2mm,
-  bleed: 10mm,
+  bleed: 5mm,
   background: "assets/cover_pattern.svg",
 ) = {
   // SETUP
@@ -30,7 +30,8 @@
     style: "italic",
   )
 
-  let margin = if full {bleed * 2 + 20mm} else {30mm}
+  let base_margin = 25mm
+  let margin = base_margin + if full {bleed} else {0mm}
 
   let subtitle = [
     #volume, #date.display("[month repr:long] [year]")
@@ -48,7 +49,12 @@
     background: place(
       top + left,
       ..if not full {(
-        dx: - (full_size.width - bleed)/2,
+        // dx = spine +   A4width +   bleed
+        // fw = spine + 2 A4width + 2 bleed
+        // a = (f - s - 2b)/2
+        // dx = s + (f - s - 2b)/2 + b
+        //    = (s + f)/2
+        dx: - (full_size.width + spine)/2,
         dy: - bleed
       )},
       image(
@@ -91,21 +97,22 @@
 
   columns(
     if full {2} else {1},
-    gutter: 50mm,
+    gutter: 2 * base_margin + spine,
     {
       // back cover
       if full {
         set text(size: 16pt)
+        set par(justify: false)
         for article in articles {
           block(
-            width: 60%,
+            width: 85%,
             [
               #article.title\
               #block(
                 above: 0.8em,
                 text(style: "italic", article.author)
               )
-              #v(5mm)
+              #v(3mm)
             ]
           )
         }
@@ -140,6 +147,7 @@
 
       // front cover
       {
+        v(10mm)
         block(
           width: 110mm,
           {
