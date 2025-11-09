@@ -443,46 +443,58 @@
 
           v(1fr)
 
-          // DOI
-          if article.keys().contains("doi") {
+          // article metadata: DOI, copyright, orcids
+          {
+            set par(justify: false)
+
+            // DOI
+            if article.keys().contains("doi") {
+              link(
+                "https://doi.org/" + article.doi,
+                [DOI: #article.doi]
+              )
+              h(3mm)
+
+              // if multiple author orcids, then line will overflow,
+              // so rather put DOI on separate line
+              if ( article.keys().contains("orcid")
+              and type(article.orcid) == array ) {
+                linebreak()
+              }
+            }
+
+
+            // Copyright
             link(
-              "https://doi.org/" + article.doi,
-              [DOI: #article.doi]
-            )
-            // linebreak()
-            h(3mm)
-          }
-
-          // Copyright
-          link(
-            "https://creativecommons.org/licenses/by-nc-sa/4.0",
-            [© CC BY-NC-SA 4.0]
-          )
-          h(1mm)
-          article.author
-
-          // Author ORCID
-          let orcid_logo = {
-            h(3mm)
-            box(
-              height: 0.8em,
-              baseline: 1pt,
-              image("assets/orcid.svg", alt: "The ORCID logo.")
+              "https://creativecommons.org/licenses/by-nc-sa/4.0",
+              [© CC BY-NC-SA 4.0]
             )
             h(1mm)
-          }
+            article.author
 
-          let orcid_link(id) = link(
-            "https://orcid.org/" + id,
-            id
-          )
+            // Author ORCID
+            let orcid_logo = {
+              h(3mm)
+              box(
+                height: 0.7em,
+                baseline: 0.5pt,
+                image("assets/orcid.svg", alt: "The ORCID logo.")
+              )
+              h(1mm)
+            }
 
-          if article.keys().contains("orcid") {
-            orcid_logo
-            if type(article.orcid) == array {
-              article.orcid.map(orcid_link).join(", ")
-            } else {
-              orcid_link(article.orcid)
+            let orcid_link(id) = link(
+              "https://orcid.org/" + id,
+              id
+            )
+
+            if article.keys().contains("orcid") {
+              orcid_logo
+              if type(article.orcid) == array {
+                article.orcid.map(orcid_link).join(", ")
+              } else {
+                orcid_link(article.orcid)
+              }
             }
           }
 
