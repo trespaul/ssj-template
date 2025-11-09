@@ -61,10 +61,9 @@ In your project folder, create a Typst file called `main.typ`, and place the fol
   articles: (
     ( short: "ONE WORD SHORT IDENTIFIER", // used to distinguish bibliographies
       file: "/articles/FOLDER/article.md",
-      abstract: "/articles/FOLDER/abstract.md",
+      abstract: "/articles/FOLDER/abstract.md", // OPTIONAL
       bibliography: "/articles/FOLDER/bib.yaml", // see below for file format
       title: "ARTICLE TITLE",
-      short_title: "SHORT TITLE", // OPTIONAL: leave out to use first part of title before colon
       title_pretty: ( // OPTIONAL: manually specify line-breaks using raw text
         article_first_page: ```
           This is a long article
@@ -79,10 +78,11 @@ In your project folder, create a Typst file called `main.typ`, and place the fol
           a long article title
           ```.text,
       )
+      short_title: "SHORT TITLE", // OPTIONAL: leave out to use first part of title before colon; for footer
       author: "AUTHOR NAME",
-      about: "/articles/FOLDER/bio.md",
-      orcid: "0000-000X-XXXX-XXXX", // or ("0000-000X-XXXX-XXXX", "0000-000X-XXXX-XXXX")
-      doi: "10.XXX/XXX",
+      about: "/articles/FOLDER/bio.md", // OPTIONAL
+      orcid: "0000-000X-XXXX-XXXX", // or ("0000-000X-XXXX-XXXX", "0000-000X-XXXX-XXXX"); OPTIONAL
+      doi: "10.XXX/XXX", // OPTIONAL
     ),
     // ...
   )
