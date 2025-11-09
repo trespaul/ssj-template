@@ -67,6 +67,8 @@ In your project folder, create a Typst file called `main.typ`, and place the fol
       short_title: "SHORT TITLE", // OPTIONAL: leave out to use first part of title before colon
       author: "AUTHOR NAME",
       about: "/articles/FOLDER/bio.md",
+      orcid: "0000-000X-XXXX-XXXX", // or ("0000-000X-XXXX-XXXX", "0000-000X-XXXX-XXXX")
+      doi: "10.XXX/XXX",
     ),
     // ...
   )

@@ -411,7 +411,7 @@
           article.author
 
           // Author ORCID
-          if article.keys().contains("orcid") {
+          let orcid_logo = {
             h(3mm)
             box(
               height: 0.8em,
@@ -419,10 +419,20 @@
               image("assets/orcid.svg", alt: "The ORCID logo.")
             )
             h(1mm)
-            link(
-              "https://orcid.org/" + article.orcid,
-              article.orcid
-            )
+          }
+
+          let orcid_link(id) = link(
+            "https://orcid.org/" + id,
+            id
+          )
+
+          if article.keys().contains("orcid") {
+            orcid_logo
+            if type(article.orcid) == array {
+              article.orcid.map(orcid_link).join(", ")
+            } else {
+              orcid_link(article.orcid)
+            }
           }
 
           // article body
