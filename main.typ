@@ -198,6 +198,8 @@
     Contents
     #v(10mm)
   ])
+  // ToC in PDF bookmarks
+  show outline: set heading(bookmarked: true)
 
   show outline.entry.where(level: 1): set block(above: 2em)
   set outline.entry(fill: none)
