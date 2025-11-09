@@ -104,11 +104,70 @@
     weight: "regular",
   )
 
-  // h1 is article title
+  let article_title(article) = {
+    let title_outline = {
+      if ( article.keys().contains("title_pretty")
+      and article.title_pretty.keys().contains("contents_page") ) {
+        article.title_pretty.contents_page
+      } else {
+        article.title
+      }
+    }
+
+    let title_display = {
+      if ( article.keys().contains("title_pretty")
+      and article.title_pretty.keys().contains("article_first_page") ) {
+        article.title_pretty.article_first_page
+      } else {
+        article.title
+      }
+    }
+
+    counter(heading).step()
+
+    // for display
+    [ // label only works in content block
+      #heading(
+        level: 1,
+        outlined: false,
+        bookmarked: false,
+        title_display
+      )
+      #label(article.short)
+    ]
+
+    // bookmark must come before the displayed heading so when jumping, the
+    // heading is in view, but the bookmark heading must be directly before
+    // all h2 headings, otherwise those h2 headings don't have an h1, and thus
+    // become top-level in PDF bookmarks. Currently the bookmark is the top of
+    // the page, which is different than other h1s in the document, but it looks
+    // better this way anyway.
+    place(
+      top + left,
+      {
+        show heading: none
+        // for outline
+        heading(
+          level: 1,
+          bookmarked: false,
+          title_outline
+        )
+        // for bookmark
+        heading(
+          level: 1,
+          outlined: false,
+          bookmarked: true,
+          article.title
+        )
+      }
+    )
+  }
+
+  // h1 is section (incl. article) title
   show heading.where(level: 1): it => {
     set text(size: 23pt)
     set par(leading: 0.5em)
-    set block(width: 75%, above: 20mm)
+    set block(above: 20mm)
     set heading(numbering: none)
     v(20mm)
     it
@@ -355,15 +414,7 @@
         {
           counter(footnote).update(0)
           // article title page
-          counter(heading).step()
-          [ // label only works in content block
-            #heading(
-              level: 1,
-              if article.keys().contains("title_pretty") { article.title_pretty }
-              else { article.title }
-            )
-            #label(article.short)
-          ]
+          article_title(article)
           author_styled(article.author)
 
           v(15mm)

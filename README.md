@@ -65,6 +65,20 @@ In your project folder, create a Typst file called `main.typ`, and place the fol
       bibliography: "/articles/FOLDER/bib.yaml", // see below for file format
       title: "ARTICLE TITLE",
       short_title: "SHORT TITLE", // OPTIONAL: leave out to use first part of title before colon
+      title_pretty: ( // OPTIONAL: manually specify line-breaks using raw text
+        article_first_page: ```
+          This is a long article
+          title
+          ```.text,
+        contents_page: ```
+          This is a long
+          article title
+          ```.text,
+        back_cover: ```
+          This is
+          a long article title
+          ```.text,
+      )
       author: "AUTHOR NAME",
       about: "/articles/FOLDER/bio.md",
       orcid: "0000-000X-XXXX-XXXX", // or ("0000-000X-XXXX-XXXX", "0000-000X-XXXX-XXXX")

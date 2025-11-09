@@ -104,17 +104,17 @@
         set text(size: 16pt)
         set par(justify: false)
         for article in articles {
+          if ( article.keys().contains("title_pretty")
+          and article.title_pretty.keys().contains("back_cover")) {
+            article.title_pretty.back_cover
+          } else {
+            article.title
+          }
           block(
-            width: 85%,
-            [
-              #article.title\
-              #block(
-                above: 0.8em,
-                text(style: "italic", article.author)
-              )
-              #v(3mm)
-            ]
+            above: 0.8em,
+            text(style: "italic", article.author)
           )
+          v(3mm)
         }
         v(1fr) // necessary because placing spine makes columns shrink?
         place(
