@@ -26,14 +26,14 @@
     Published by the Stellenbosch University Department of Philosophy,\
     Stellenbosch, South Africa.\
     #link(
-      "https://www0.sun.ac.za/philosophy",
-      [www0.sun.ac.za/philosophy]
+      "https://www.su.ac.za/en/faculties/arts/departments/philosophy",
+      [su.ac.za/en/faculties/arts/departments/philosophy]
     )
     #v(5pt)
     Published on SUNJournals.\
     #link(
-      "https://ssj.journals.ac.za",
-      [ssj.journals.ac.za]
+      "https://www.journals.ac.za/ssj",
+      [journals.ac.za/ssj]
     )
   ],
 
