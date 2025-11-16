@@ -389,6 +389,7 @@
           cmarker.render(
             h1-level: 2,
             label-prefix: "foreword-",
+            scope: (image: (path, alt: none) => image(path, alt: alt)),
             read(foreword.file)
           )
         } else {
@@ -424,6 +425,7 @@
           if article.abstract.ends-with(".md") {
             cmarker.render(
               label-prefix: article.short + "-",
+              scope: (image: (path, alt: none) => image(path, alt: alt)),
               read(article.abstract)
             )
           } else {
@@ -436,6 +438,7 @@
             if article.about.ends-with(".md") {
               cmarker.render(
                 label-prefix: article.short + "-",
+                scope: (image: (path, alt: none) => image(path, alt: alt)),
                 read(article.about)
               )
             } else {
@@ -510,6 +513,7 @@
               if article.file.ends-with(".md") {
                 cmarker.render(
                   label-prefix: article.short + "-",
+                  scope: (image: (path, alt: none) => image(path, alt: alt)),
                   h1-level: 2,
                   read(article.file)
                 )
