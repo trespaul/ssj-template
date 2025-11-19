@@ -79,7 +79,7 @@ In your project folder, create a Typst file called `main.typ`, and place the fol
           This is
           a long article title
           ```.text,
-      )
+      ),
       short_title: "SHORT TITLE", // OPTIONAL: leave out to use first part of title before colon; for footer
       author: "AUTHOR NAME",
       about: "/articles/FOLDER/bio.md", // OPTIONAL
