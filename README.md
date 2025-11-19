@@ -6,6 +6,8 @@ I created the design in 2022, using Microsoft Word for accessibility by future e
 
 This template allows future teams to generate the document and get the format exactly right.
 
+If you can't or don't want to use this setup, I recommend trying [Affinity Studio](https://www.affinity.studio/), which was recently acquired by Canva and made free to use.
+
 ## Usage
 
 ### Importing and setting up the template
@@ -152,6 +154,15 @@ Tell the printers this cover has a 2 mm bleed (this is extra space that they can
 In the `main.typ` file, where values are in square brackets (such as the colophon setting), and in the article documents, content can be written with Typst markup. See the [Typst Tutorial](https://typst.app/docs/tutorial/) for more information.
 
 The articles can be in either Typst or Markdown format. For more about Markdown, see the [CommonMark specification](https://spec.commonmark.org/current/).
+Markdown is also how Microsoft Notepad saves its files when you add formatting.
+The easiest way of getting Word documents into Markdown might be to simply open them with Notepad (or write it in Notepad in the first place — the simplicity is a pro, not a con!), making sure that the formatting is correct, and then saving them as a file with the `.md` extension.
+
+The benefit of Markdown is that it is understood by a wide-variety of programs, while still being human-readable when viewed as-is.
+This makes it easy to generate HTML versions of the articles to upload for viewing on OJS using a program such as [pandoc](https://pandoc.org/):
+
+```bash
+pandoc "article.md" --to html5 --standalone --output "article.html"
+```
 
 The files necessary for each article are referenced in the `articles` part of the setup in your `main.typ` file. I suggest putting them in a folder called `articles` and giving each article its own subfolder.
 
@@ -159,7 +170,11 @@ The files necessary for each article are referenced in the `articles` part of th
 
 The bibliography files can be either BibTex/BibLaTex files, which can be exported from a reference manager such as Zotero, or written by hand in Typst's own [Hayagriva format](https://github.com/typst/hayagriva/blob/main/docs/file-format.md).
 
-The entire contents of the bibliography files will be rendered in each article's Reference section. This is because I have decided it would be too much effort to rewrite each citation in Typst's format, and I have thus not tried either. Typst actually does not currently support multiple different bibliographies, so I'm using a third-party package which adds this functionality. Ideally, each citation would link to its reference in the bibliography.
+The entire contents of the bibliography files will be rendered in each article's Reference section.
+As of writing, Typst doesn't yet have the tools to generate the different citation formats (all the variations of "(Author, year:pages)", "Author (year:pages)").
+It also doesn't yet support multiple different bibliographies, so I'm using a third-party package which adds this functionality.
+Ideally, each citation would link to its reference in the bibliography.
+Hopefully when this functionality is added I'll be able to come back and update the template.
 
 ### Font
 
