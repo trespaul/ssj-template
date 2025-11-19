@@ -9,7 +9,7 @@
   articles: (),
   full: false,
   spine: 2mm,
-  bleed: 5mm,
+  bleed: 2mm,
   background: "assets/cover_pattern.svg",
 ) = {
   // SETUP

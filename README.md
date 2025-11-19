@@ -145,7 +145,7 @@ You will then also want to generate the wrap-around cover to send to the printer
 typst compile main.typ --input cover=full "SSJ vol. X - cover.pdf"
 ```
 
-Tell the printers this cover has a 10 mm bleed (this is extra space that they can cut off so that the picture fills the entire page).
+Tell the printers this cover has a 2 mm bleed (this is extra space that they can cut off so that the picture fills the entire page).
 
 ### Documents in Typst or Markdown format
 
@@ -167,4 +167,13 @@ The font used is Brill, by Brill Publishing, which is free for non-commercial us
 
 ### Cover pattern
 
-To create a cover pattern, you need an SVG file (although other formats would work too) that is big enough to cover the full wrap-around cover. For the default bleed and spine width settings (which are added to the final size, which is A3), this is 442 × 317 mm. You can use the free SVG editor [Inkscape](https://inkscape.org/) to create this document. An example SVG of the right size is included as a default cover, in the `assets` folder.
+To create a cover pattern, you need an SVG file (although other formats would work too) that is big enough to cover the full wrap-around cover.
+The calculation is:
+
+- width: 420 mm + (bleed × 2) + spine
+- height: 297 mm + (bleed × 2)
+
+For the default bleed (2 mm) and spine width (2 mm) settings (which are added to two A4s, i.e., A3), this is 426 × 301 mm.
+If the final document has significantly more pages than up until now, you'll have to increase the spine width to accommodate the extra thickness.
+
+You can use the free SVG editor [Inkscape](https://inkscape.org/) to create the cover pattern document. An example SVG of the right size is included as a default cover, in the `assets` folder.
