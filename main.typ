@@ -42,7 +42,7 @@
   reviewers_message: "",
   reviewers: none,
 
-  csl: "assets/harvard-stellenbosch-university.csl",
+  csl: "assets/ssj-ref.csl",
 
   foreword: (),
 

@@ -51,8 +51,8 @@ In your project folder, create a Typst file called `main.typ`, and place the fol
     "NAME 2 HERE",
   ),
 
-  // this file defines the Harvard Stellenbosch style
-  // csl: "/assets/harvard-stellenbosch-university.csl", // OPTIONAL: the file is used by default, update to change the style
+  // this file defines the SSJ referencing style
+  // csl: "/assets/ssj-ref.csl", // OPTIONAL: the file is used by default, update to change the style
 
   foreword: (
     author: "EDITOR-IN-CHIEF NAME HERE",

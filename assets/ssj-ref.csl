@@ -1,0 +1,512 @@
+<?xml version="1.0" encoding="utf-8"?>
+<style
+  xmlns="http://purl.org/net/xbiblio/csl"
+  class="in-text"
+  version="1.0"
+  default-locale="en-ZA"
+
+  demote-non-dropping-particle="never"
+  initialize-with-hyphen="true"
+  initialize-with="."
+  name-as-sort-order="all"
+  sort-separator=", "
+  name-delimiter=", "
+  delimiter-precedes-last="contextual"
+  and="symbol"
+>
+
+  <info>
+    <title>Stellenbosch Socratic Journal Referencing</title>
+    <title-short>SSJ Referencing</title-short>
+    <id>ssj-ref</id>
+    <author>
+      <name>Paul Joubert</name>
+    </author>
+    <category
+      citation-format="author-date"
+      field="generic-base"
+    />
+    <updated>2025-10-04T00:00:00+02:00</updated>
+    <rights license="http://creativecommons.org/licenses/by-sa/4.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 License</rights>
+  </info>
+
+  <locale xmlns="http://purl.org/net/xbiblio/csl" xml:lang="en-ZA">
+    <style-options punctuation-in-quote="false"/>
+    <terms>
+      <term name="available at">available</term>
+      <term name="translator" form="short">tr.</term>
+      <term name="editor-translator" form="short">ed. &amp; tr.</term>
+    </terms>
+  </locale>
+
+  <locale xmlns="http://purl.org/net/xbiblio/csl" xml:lang="en-GB">
+    <style-options punctuation-in-quote="false"/>
+    <terms>
+      <term name="available at">available</term>
+      <term name="translator" form="short">tr.</term>
+      <term name="editor-translator" form="short">ed. &amp; tr.</term>
+    </terms>
+  </locale>
+
+  <locale xmlns="http://purl.org/net/xbiblio/csl" xml:lang="en-US">
+    <style-options punctuation-in-quote="false"/>
+    <terms>
+      <term name="available at">available</term>
+      <term name="translator" form="short">tr.</term>
+      <term name="editor-translator" form="short">ed. &amp; tr.</term>
+    </terms>
+  </locale>
+
+
+  <citation
+    disambiguate-add-year-suffix="true"
+    year-suffix-delimiter=","
+    collapse="year-suffix-ranged"
+    disambiguate-add-names="true"
+    disambiguate-add-givenname="true"
+    givenname-disambiguation-rule="all-names-with-initials"
+    name-form="short"
+    et-al-use-first="1"
+    et-al-subsequent-min="3"
+  >
+    <sort>
+      <key macro="issued-year-cite" />
+      <key macro="author-cite" />
+      <key variable="issued"/>
+      <key variable="title"/>
+    </sort>
+    <layout prefix="(" suffix=")" delimiter="; ">
+      <!--
+        (Author, year:pages) OR (Author, year, ch. x)
+      -->
+      <group delimiter=", ">
+        <text macro="author-cite"/>
+        <text macro="issued-year-cite"/>
+      </group>
+      <choose>
+        <if locator="page">
+          <text variable="locator" prefix=":" />
+        </if>
+        <else>
+          <group prefix=", " delimiter=" ">
+            <label variable="locator" form="short" />
+            <text variable="locator" />
+          </group>
+        </else>
+      </choose>
+    </layout>
+  </citation>
+
+
+  <bibliography>
+    <sort>
+      <key macro="author-bib" />
+      <key macro="issued-year"/>
+      <key variable="issued"/>
+    </sort>
+    <layout suffix=".">
+      <!--
+        common:
+          `Author, I. Year.`
+        then (title-status-volume macro):
+          if not in container:
+            `<title> [genre, medium, status], <volume-number-pages>. <credits>`
+          else (in container):
+            if chapter: `title [genre, medium], in`
+            else:       `title [genre, medium].`
+            then:
+              `<credits>. <container-title> [status], <volume-number-pages>.`
+        then, common:
+          `version. court. series. event. day and month. archive.
+          place and publisher. chapter page-range. doi or url [url date].
+          annotation.`
+      -->
+      <group delimiter=". ">
+        <text macro="author-bib" />
+        <text macro="issued-year" />
+        <text macro="title-status-volume" />
+        <text macro="version" />
+        <text macro="court" />
+        <text macro="series" />
+        <text macro="event" />
+        <text macro="issued-day-month" />
+        <text macro="archive" />
+        <text macro="place-publisher" />
+        <text macro="chapter-pages" />
+        <text macro="doi-or-url" />
+        <text macro="annotation" />
+      </group>
+    </layout>
+  </bibliography>
+
+
+  <macro name="author-bib">
+    <names variable="author">
+      <name />
+      <label form="short" prefix=" (" suffix=")" />
+      <substitute>
+        <names variable="editor" />
+        <names variable="director" />
+        <names variable="script-writer" />
+        <names variable="composer" />
+        <names variable="performer" />
+        <text variable="publisher" />
+        <text variable="container-title" font-style="italic" />
+        <text macro="title-genre-medium" />
+        <text variable="authority" />
+      </substitute>
+    </names>
+  </macro>
+
+  <macro name="author-cite">
+    <names variable="author">
+      <name />
+      <et-al font-style="italic"/>
+      <substitute>
+        <names variable="editor" />
+        <names variable="director" />
+        <names variable="script-writer" />
+        <names variable="composer" />
+        <names variable="performer" />
+        <text variable="publisher" />
+        <text variable="container-title" font-style="italic" />
+        <text macro="title" form="short" />
+        <text variable="authority" />
+      </substitute>
+    </names>
+  </macro>
+
+  <macro name="issued-year">
+    <choose>
+      <!-- has issued date -->
+      <if variable="issued">
+        <choose>
+          <!-- date is uncertain -->
+          <if is-uncertain-date="issued">
+            <group prefix="[" suffix="]">
+              <date variable="issued">
+                <date-part name="year" />
+              </date>
+              <text variable="year-suffix" />
+            </group>
+          </if>
+          <!-- date is not uncertain -->
+          <else>
+            <group delimiter=" ">
+              <group>
+                <date variable="issued">
+                  <date-part name="year" />
+                </date>
+                <text variable="year-suffix" />
+              </group>
+              <choose>
+                <!-- has original year -->
+                <if variable="original-date"> <!-- not in Zotero -->
+                  <date variable="original-date" prefix="[" suffix="]" >
+                    <date-part name="year" />
+                  </date>
+                </if>
+              </choose>
+            </group>
+          </else>
+        </choose>
+      </if>
+      <!-- no issued date -->
+      <else>
+        <group prefix="[" suffix="]" delimiter=" ">
+          <text term="no date" form="short" />
+        </group>
+      </else>
+    </choose>
+  </macro>
+
+  <macro name="issued-year-cite">
+    <choose>
+      <if variable="issued">
+        <choose>
+          <if is-uncertain-date="issued">
+            <group prefix="[" suffix="]">
+              <date variable="issued">
+                <date-part name="year" />
+              </date>
+              <text variable="year-suffix" />
+            </group>
+          </if>
+          <else>
+            <date variable="issued">
+              <date-part name="year" />
+            </date>
+            <text variable="year-suffix" />
+          </else>
+        </choose>
+      </if>
+      <else>
+        <group delimiter=" ">
+          <text term="no date" form="short" />
+        </group>
+      </else>
+    </choose>
+  </macro>
+
+  <macro name="title-status-volume">
+    <!--
+      if inside container:
+        if ch.: title [genre, medium], in
+        else:   title [genre, medium].
+        then:   <credits>. <container-title> [status], <volume-number-pages>.
+      else (has no container / is top-level type):
+        <title> [genre, medium, status], <volume-number-pages>. <credits>
+    -->
+    <choose>
+      <!-- inside container -->
+      <if variable="container-title">
+        <choose>
+          <if type="chapter">
+            <text macro="title-genre-medium" suffix=", " />
+            <text term="in" suffix=" " />
+          </if>
+          <else>
+            <text macro="title-genre-medium" suffix=". " />
+          </else>
+        </choose>
+        <group delimiter=". ">
+          <text macro="credits" />
+          <group delimiter=", ">
+            <group delimiter=" ">
+              <text variable="container-title" font-style="italic" />
+              <text variable="status" prefix="[" suffix="]" />
+            </group>
+            <text macro="volume-number-pages" />
+          </group>
+        </group>
+      </if>
+      <!-- no container -->
+      <else>
+        <group delimiter=". ">
+          <group delimiter=", ">
+            <group delimiter=" ">
+              <text macro="title" />
+              <group delimiter=", " prefix="[" suffix="]">
+                <text variable="genre" />
+                <text variable="medium" />
+                <text variable="status" />
+              </group>
+            </group>
+            <text macro="volume-number-pages" />
+          </group>
+          <text macro="credits" />
+        </group>
+      </else>
+    </choose>
+  </macro>
+
+  <macro name="title">
+    <choose>
+      <if variable="container-title" type="manuscript" match="any">
+        <text variable="title" />
+      </if>
+      <else>
+        <text variable="title" font-style="italic" />
+      </else>
+    </choose>
+  </macro>
+
+  <macro name="version">
+    <group delimiter=" ">
+      <label variable="version" form="short" />
+      <text variable="version" />
+    </group>
+  </macro>
+
+  <macro name="court">
+    <group delimiter=", ">
+      <text macro="authority" />
+      <text macro="division" />
+    </group>
+  </macro>
+
+  <macro name="series">
+    <!--
+      series (series-no.)
+    -->
+    <group delimiter=" ">
+      <text variable="collection-title" />
+      <text variable="collection-number" prefix="(" suffix=")" />
+    </group>
+  </macro>
+
+  <macro name="event">
+    <!--
+      XYZ Conference, Stellenbosch, 31 October 2025
+    -->
+    <group delimiter=", ">
+      <text variable="event-title" />
+      <text variable="event-place" />
+      <date variable="event-date" delimiter=" ">
+        <date-part name="day" form="numeric" />
+        <date-part name="month" form="long" />
+        <date-part name="year" />
+      </date>
+    </group>
+  </macro>
+
+  <macro name="issued-day-month">
+    <date variable="issued" delimiter=" ">
+      <date-part name="day" form="numeric" />
+      <date-part name="month" form="long" />
+    </date>
+  </macro>
+
+  <macro name="archive">
+    <!--
+      XYZ Collection, AB123. Stellenbosch University Archive, Stellenbosch.
+    -->
+    <group delimiter=". ">
+      <group delimiter=", ">
+        <text variable="archive_collection" /> <!-- not in Zotero -->
+        <text variable="archive_location" /> <!-- loc. IN archive -->
+      </group>
+      <group delimiter=", ">
+        <text variable="archive" />
+        <text variable="archive-place" /> <!-- loc. OF archive; not in Zotero -->
+      </group>
+    </group>
+  </macro>
+
+  <macro name="title-genre-medium">
+    <group delimiter=". ">
+      <group delimiter=" ">
+        <text macro="title" />
+        <group delimiter=", " prefix="[" suffix="]">
+          <text variable="genre" />
+          <text variable="medium" />
+        </group>
+      </group>
+    </group>
+  </macro>
+
+  <macro name="credits">
+    <group delimiter=", ">
+      <choose>
+        <if variable="editor-translator">
+          <names variable="editor-translator">
+            <name />
+            <label form="short" prefix=" (" suffix=")" />
+          </names>
+        </if>
+        <else>
+          <names variable="editor">
+            <name />
+            <label form="short" prefix=" (" suffix=")" />
+          </names>
+          <names variable="translator">
+            <name />
+            <label form="short" prefix=" (" suffix=")" />
+          </names>
+        </else>
+      </choose>
+      <names variable="director">
+        <name />
+        <label form="short" prefix=" (" suffix=")" />
+      </names>
+      <names variable="script-writer">
+        <name />
+        <label form="short" prefix=" (" suffix=")" />
+      </names>
+      <names variable="curator">
+        <name />
+        <label form="short" prefix=" (" suffix=")" />
+      </names>
+    </group>
+  </macro>
+
+  <macro name="volume-number-pages">
+    <!--            if chapter:                  else:
+      no vol-title:   vol. X, Yth ed.              vol(issue):pages
+      w/ vol-title:   vol. X: vol-title, Yth ed.   vol(issue), vol-title:pages
+    -->
+    <choose>
+      <if type="chapter book" match="any">
+        <group delimiter=", ">
+          <group delimiter=": ">
+            <group delimiter=" ">
+              <label variable="volume" form="short" />
+              <text variable="volume" />
+            </group>
+            <text variable="volume-title" /> <!-- not in Zotero -->
+          </group>
+          <group delimiter=" ">
+            <number variable="edition" form="ordinal" />
+            <label variable="edition" form="short" />
+          </group>
+        </group>
+      </if>
+      <else>
+        <group delimiter=":">
+          <group delimiter=", ">
+            <group>
+              <choose>
+                <if variable="issue page" match="none">
+                  <label variable="volume" form="short" suffix=" " />
+                </if>
+              </choose>
+              <text variable="volume" />
+              <text variable="issue" prefix="(" suffix=")" />
+            </group>
+            <text variable="volume-title" />
+          </group>
+          <text variable="page" />
+        </group>
+      </else>
+    </choose>
+  </macro>
+
+  <macro name="place-publisher">
+    <group delimiter=": ">
+      <text variable="publisher-place" />
+      <text variable="publisher" />
+    </group>
+  </macro>
+
+  <macro name="doi-or-url">
+    <group delimiter=" ">
+      <choose>
+        <if variable="DOI">
+          <text value="DOI: " />
+          <text variable="DOI" />
+        </if>
+        <else-if variable="URL">
+          <group delimiter=" ">
+            <text term="available at" text-case="capitalize-first" suffix=":" />
+            <text variable="URL" />
+            <date variable="accessed" prefix="[" suffix="]">
+              <date-part name="year" />
+              <date-part name="month" form="long" prefix=", " />
+              <date-part name="day" form="numeric" prefix=" " />
+            </date>
+          </group>
+        </else-if>
+      </choose>
+    </group>
+  </macro>
+
+  <macro name="chapter-pages">
+    <choose>
+      <if type="chapter">
+        <text variable="page" />
+      </if>
+    </choose>
+  </macro>
+
+  <macro name="annotation">
+    <choose>
+      <if variable="annote">
+        <text variable="annote" />
+      </if>
+      <else>
+        <text variable="note" />
+      </else>
+    </choose>
+  </macro>
+
+</style>
