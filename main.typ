@@ -1,7 +1,7 @@
 #import "components.typ": author_styled, strip_numbering, plain_footer, article_footer
 #import "cover.typ": cover
 
-#import "@preview/cmarker:0.1.6"
+#import "@preview/cmarker:0.1.7"
 #import "@preview/alexandria:0.2.1": alexandria, bibliographyx as _bibliographyx
 
 #let meta(
