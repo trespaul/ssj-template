@@ -59,7 +59,7 @@
 
   // PDF metadata
   set document(
-    title: if (sys.inputs.keys().contains("cover") and sys.inputs.cover == "full") [
+    title: if (sys.inputs.at("cover", default: none) == "full") [
       #document_title — cover
     ] else {
       document_title

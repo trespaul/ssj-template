@@ -38,11 +38,7 @@
       // if verso, numbers outside and title inside
       #counter(page).display()
       #h(1fr)
-      #if article.keys().contains("short_title") [
-        #article.short_title
-      ] else [
-        #article.title.split(":").first()
-      ]
+      #article.at("short_title", default: article.title.split(":").first())
     ] else [
       // if recto, author inside and numbers outside
       #text(style: "italic", article.author)
